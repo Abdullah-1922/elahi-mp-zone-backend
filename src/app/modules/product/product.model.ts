@@ -41,11 +41,7 @@ const productVariantSchema = new Schema<TProductVariant>(
       required: [true, "Variant price is required"],
       min: [0, "Price cannot be negative"],
     },
-    stock: {
-      type: Number,
-      required: [true, "Variant stock is required"],
-      min: [0, "Stock cannot be negative"],
-    },
+    
   },
   {
     timestamps: true,

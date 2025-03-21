@@ -10,5 +10,5 @@ export type TProductVariant = {
   productId: Types.ObjectId;
   variant: string;
   price: number;
-  stock: number;
+
 };

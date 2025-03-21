@@ -11,18 +11,41 @@ const createProduct = async (payload: TProduct) => {
 
 // Get all products
 const getAllProducts = async () => {
-  const products = await Product.find();
+  // const products = await Product.find().lean();
+
+  // const getProductVariants = await ProductVariant.find({productId:products._id}).lean();
+
+  const products = await Product.aggregate([
+    {
+      $lookup: {
+        from: "productvariants",
+        localField: "_id",
+        foreignField: "productId",
+        as: "variants",
+      },
+    },
+    {
+      $project: {
+        name: 1,
+        description: 1,
+        image: 1,
+        createdAt: 1,
+        variants: 1,
+      },
+    },
+  ]);
+
   return products;
 };
 
 // Get single product by id
 const getProductById = async (id: string) => {
-  const product = await Product.findById(id);
-
+  const product = await Product.findById(id).lean();
+  const variants = await ProductVariant.find({ productId: id });
   if (!product) {
     throw new Error("Product not found");
   }
-  return product;
+  return { ...product, variants };
 };
 
 // Update product
@@ -58,13 +81,12 @@ const createProductVariant = async (payload: TProductVariant) => {
 };
 // Get all variants of a product
 const getProductVariants = async (productId: string) => {
-  const product = await
-  Product.findById(productId).lean();
+  const product = await Product.findById(productId).lean();
   if (!product) {
     throw new Error("Product not found");
   }
   const variants = await ProductVariant.find({ productId }).lean();
-   const data ={product, variants}
+  const data = { product, variants };
   return data;
 };
 
@@ -105,9 +127,6 @@ const getProductWithVariants = async (productId: string) => {
   const variants = await ProductVariant.find({ productId });
   return { product, variants };
 };
-
-
-
 
 export const ProductServices = {
   createProduct,

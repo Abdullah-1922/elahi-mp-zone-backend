@@ -25,7 +25,6 @@ export const createProductVariantValidationSchema = z.object({
     productId: z.string().min(1, { message: "Product ID is required" }),
     variant: z.string().min(1, { message: "Variant name is required" }).trim(),
     price: z.number().min(0, { message: "Price cannot be negative" }),
-    stock: z.number().int().min(0, { message: "Stock cannot be negative" }),
   }),
 });
 
@@ -37,10 +36,6 @@ export const updateProductVariantValidationSchema = z.object({
       .number()
       .min(0, { message: "Price cannot be negative" })
       .optional(),
-    stock: z
-      .number()
-      .int()
-      .min(0, { message: "Stock cannot be negative" })
-      .optional(),
+    
   }),
 });

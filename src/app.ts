@@ -1,4 +1,3 @@
-
 import cors from "cors";
 import express, { Application } from "express";
 import globalErrorHandler from "./app/middlewares/globalErrorhandler";
@@ -6,12 +5,7 @@ import notFound from "./app/middlewares/notFound";
 import router from "./app/routes";
 import cookieParser from "cookie-parser";
 
-
 const app: Application = express();
-
-
-
-
 
 // Set up CORS, cookie parser, and JSON parsing
 app.use(express.json());
@@ -24,17 +18,12 @@ app.use(
       "http://localhost:3001",
     ],
     credentials: true,
-    allowedHeaders: ["Authorization", "Content-Type","x-refresh-token",], // allow Authorization header
+    allowedHeaders: ["Authorization", "Content-Type", "x-refresh-token","sentry-trace","baggage"], // allow Authorization header
     exposedHeaders: ["Authorization", "set-cookie"],
   }),
 );
 
 app.set("trust proxy", true);
-
-
-
-
-// Define routes
 
 // Application routes
 app.use("/api/v1", router);
@@ -42,7 +31,7 @@ app.use("/api/v1", router);
 // Welcome route
 app.get("/", (req, res) => {
   res.status(200).json({
-    message: "Welcome to TastyHub",
+    message: "Welcome to the Elahi MP Zone API",
   });
 });
 

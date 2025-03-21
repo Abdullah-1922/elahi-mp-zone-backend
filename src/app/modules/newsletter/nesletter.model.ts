@@ -9,7 +9,7 @@ const newsletterSchema = new Schema<TNewsletter>(
       required: [true, "Email is required"],
       unique: true,
       trim: true,
-      lowercase: true,
+      lowercase: true, 
     },
   },
   {
