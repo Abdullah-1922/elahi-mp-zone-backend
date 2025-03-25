@@ -51,7 +51,7 @@ const loginUser = async (email: string, password: string) => {
 
   // Generate JWT token
   const accessToken = jwt.sign(
-    { _id: user._id, email: user.email },
+    { _id: user._id, email: user.email ,role:user.role},
     config.jwt_access_secret!,
     { expiresIn: config.jwt_access_expires_in },
   );
@@ -95,7 +95,7 @@ const googleAuth = async (googleData: {
   }
   // Generate JWT token
   const accessToken = jwt.sign(
-    { _id: user._id, email: user.email },
+    { _id: user._id, email: user.email,role:user.role },
     config.jwt_access_secret!,
     { expiresIn: config.jwt_access_expires_in },
   );

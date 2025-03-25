@@ -30,6 +30,7 @@ app.use("/api/v1", router);
 
 // Welcome route
 app.get("/", (req, res) => {
+  console.log(req.ip?.toString());
   res.status(200).json({
     message: "Welcome to the Elahi MP Zone API",
   });

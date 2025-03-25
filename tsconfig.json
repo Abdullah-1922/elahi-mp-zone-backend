@@ -1,5 +1,5 @@
 {
-   "include": ["src", "../M_P_Zone/app/dashboard"], // which files to compile
+   "include": ["src"], // which files to compile
   "exclude": ["node_modules"], // which files to skip
   "compilerOptions": {
     "jsx": "react",

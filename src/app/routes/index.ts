@@ -2,6 +2,8 @@ import { Router } from "express";
 import { ProductRoutes } from "../modules/product/product.route";
 import { UserRoutes } from "../modules/user/user.route";
 import { NewsletterRoutes } from "../modules/newsletter/newsletter.route";
+import { AnalyticsLogRoutes } from "../modules/analyticsLog/analyticsLog.route";
+import { FeedbackRoutes } from "../modules/feedback/feedback.route";
 
 type TModuleRoutes = {
   path: string;
@@ -22,6 +24,14 @@ const moduleRoutes: TModuleRoutes[] = [
   {
     path: "/news-letter",
     route: NewsletterRoutes,
+  },
+  {
+    path: "/analytics-log",
+    route: AnalyticsLogRoutes,
+  },
+  {
+    path: "/feedback",
+    route: FeedbackRoutes,
   },
 ];
 
